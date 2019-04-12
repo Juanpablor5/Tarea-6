@@ -1,4 +1,4 @@
-# Tarea-6, DALGO
+# Diseño y análisis de algoritmos: Tarea 6
 
 ## Integrantes:
 * **Dany Benavides**
