@@ -5,14 +5,17 @@ import java.io.FileReader;
 
 public class Grafos {
 
-	private static int[][] matriz;
+	private int[][] matriz;
+	
+	public Grafos (int size) {
+		matriz = new int[size][size];
+	}
 
-	public static void cargarMatriz(String pFile, int size) {
+	public void cargarMatriz(String pFile, int size) {
 		try {
 			BufferedReader br;
 			br = new BufferedReader(new FileReader(pFile));
 			String linea = "";
-			matriz = new int[size][size];
 			int i = 0;
 			while (linea != null) {
 				linea = br.readLine();
@@ -29,12 +32,12 @@ public class Grafos {
 			e.printStackTrace();
 		}
 		// Imprime la matriz
-//		for (int i = 0; i < size; i++) {
-//			for (int j = 0; j < size; j++) {
-//				System.out.print(matriz[i][j] + " ");
-//			}
-//			System.out.println();
-//		}
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				System.out.print(matriz[i][j] + " ");
+			}
+			System.out.println();
+		}
 	}
 
 	/**
@@ -43,6 +46,7 @@ public class Grafos {
 	public static void main(String[] args) {
 		System.out.println("Archivo distances" + args[0]);
 		String ruta = "./data/distances" + args[0] + ".txt";
-		cargarMatriz(ruta, Integer.parseInt(args[0]));
+		Grafos grafos = new Grafos(Integer.parseInt(args[0]));
+		grafos.cargarMatriz(ruta, Integer.parseInt(args[0]));
 	}
 }
