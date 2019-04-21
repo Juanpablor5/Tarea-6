@@ -11,7 +11,7 @@ public class Grafos {
 		matriz = new int[size][size];
 	}
 
-	public void cargarMatriz(String pFile, int size) {
+	public void cargarMatriz(String pFile) {
 		try {
 			BufferedReader br;
 			br = new BufferedReader(new FileReader(pFile));
@@ -31,22 +31,24 @@ public class Grafos {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// Imprime la matriz
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				System.out.print(matriz[i][j] + " ");
-			}
-			System.out.println();
-		}
+		/**
+		 * Imprime la matriz
+		 */
+//		for (int i = 0; i < matriz.length; i++) {
+//			for (int j = 0; j < matriz.length; j++) {
+//				System.out.print(matriz[i][j] + " ");
+//			}
+//			System.out.println();
+//		}
 	}
 
 	/**
 	 * args[0]: Tamaño de la matriz que se va a cargar, puede ser 5, 100 o 1000
 	 */
 	public static void main(String[] args) {
-		System.out.println("Archivo distances" + args[0]);
+		System.out.println("Archivo distances" + args[0]+".txt cargado");
 		String ruta = "./data/distances" + args[0] + ".txt";
 		Grafos grafos = new Grafos(Integer.parseInt(args[0]));
-		grafos.cargarMatriz(ruta, Integer.parseInt(args[0]));
+		grafos.cargarMatriz(ruta);
 	}
 }
