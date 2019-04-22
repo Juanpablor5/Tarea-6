@@ -1,4 +1,4 @@
-package grafos;
+package parte_1;
 
 public class DijkstraAlgorithm {
 

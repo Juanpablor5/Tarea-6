@@ -1,4 +1,4 @@
-package grafos;
+package parte_1;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
