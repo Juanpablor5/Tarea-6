@@ -3,11 +3,11 @@ package grafos;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-public class Matriz {
+public class Main {
 
 	private int[][] matriz;
 
-	public Matriz(int size) {
+	public Main(int size) {
 		matriz = new int[size][size];
 	}
 
@@ -42,26 +42,34 @@ public class Matriz {
 //		}
 	}
 	
-	public void useDijkstra(int size) {		
+	/**
+	 * Implementa el algoritmo de Dijkstra
+	 * @param fuente Nodo fuente
+	 * @param size Tamaño de la matriz
+	 */
+	public void useDijkstra(int fuente, int size) {		
 		DijkstraAlgorithm p = new DijkstraAlgorithm();
-		p.dijkstra(matriz, 0, size);
+		p.dijkstra(matriz, fuente, size);
 	}
 
 	/**
+	 * Método Main del taller, requiere tres parámetros:
 	 * args[0]: Tamaño de la matriz que se va a cargar, puede ser 5, 100 o 1000
 	 * args[1]: Número del algoritmo a usar:
-	 * 		1. Dijkstra 
-	 * 		2. Bellman Ford
-	 * 		3. Floyd Warschall
-	 * 
+	 * 				1. Dijkstra 
+	 * 				2. Bellman Ford
+	 * 				3. Floyd Warschall
+	 * args[2]: Nodo fuente para probar el algoritmo. {0 <= args[2] < args[0]}
 	 */
 	public static void main(String[] args) {
 		System.out.println("Archivo distances" + args[0] + ".txt cargado");
 		String ruta = "./data/distances" + args[0] + ".txt";
-		Matriz grafos = new Matriz(Integer.parseInt(args[0]));
+		Main grafos = new Main(Integer.parseInt(args[0]));
 		grafos.cargarMatriz(ruta);
 		if(args[1].equals("1")) {
-			grafos.useDijkstra(Integer.parseInt(args[0]));
+			System.out.println("Se escogió el algoritmo de Dijkstra con el nodo fuente " + args[2]);
+			System.out.println();
+			grafos.useDijkstra(Integer.parseInt(args[2]), Integer.parseInt(args[0]));
 		}
 	}
 }
