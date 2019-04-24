@@ -17,9 +17,10 @@ public class Main {
 	 * 
 	 */
 	public static void main(String[] args) {
-		//Crea la matriz del tamaño escogido por el usuario en los parámetros.
+		// Crea la matriz del tamaño escogido por el usuario en los parámetros.
 		int[][] matriz = new int[Integer.parseInt(args[0])][Integer.parseInt(args[0])];
-		String ruta = "./data/distances" + args[0] + ".txt";		
+		int aristas = 0;
+		String ruta = "./data/distances" + args[0] + ".txt";
 		try {
 			BufferedReader br;
 			br = new BufferedReader(new FileReader(ruta));
@@ -31,6 +32,9 @@ public class Main {
 					String[] separado = linea.split("	");
 					for (int j = 0; j < separado.length; j++) {
 						matriz[i][j] = Integer.parseInt(separado[j]);
+						// Cuenta el numero de aristas del grafo.
+						if (matriz[i][j] > 0)
+							aristas++;
 					}
 				}
 				i++;
@@ -38,23 +42,23 @@ public class Main {
 			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 		System.out.println("Archivo distances" + args[0] + ".txt cargado");
-		
-		//Determina qué algoritmo usar según lo escogido por el usuario en los parámetros.
+
+		// Determina qué algoritmo usar según lo escogido por el usuario en los
+		// parámetros.
 		if (args[1].equals("1")) {
-			System.out.println("Se escogió el algoritmo de Dijkstra con el nodo fuente " + args[2]+"\n");
+			System.out.println("Se escogió el algoritmo de Dijkstra con el nodo fuente " + args[2] + "\n");
 			DijkstraAlgorithm p = new DijkstraAlgorithm();
 			p.dijkstra(matriz, Integer.parseInt(args[2]), Integer.parseInt(args[0]));
 		} else if (args[1].equals("2")) {
-			System.out.println("Se escogió el algoritmo de Bellman Ford con el nodo fuente " + args[2]+"\n");
-			BellmanFordAlgorithm p = new BellmanFordAlgorithm();
-			p.BellmanFord(Integer.parseInt(args[2]), matriz);
+			System.out.println("Se escogió el algoritmo de Bellman Ford con el nodo fuente " + args[2] + "\n");
+			BellmanFordAlgorithm p = new BellmanFordAlgorithm(Integer.parseInt(args[0]), aristas);
+			p.crearGrafoBF(matriz, Integer.parseInt(args[0]), aristas, Integer.parseInt(args[2]));
 		} else if (args[1].equals("3")) {
-			System.out.println("Se escogió el algoritmo de Floyd Warshal con el nodo fuente " + args[2]+"\n");
+			System.out.println("Se escogió el algoritmo de Floyd Warshal con el nodo fuente " + args[2] + "\n");
 			FloydWarshalAlgorithm p = new FloydWarshalAlgorithm();
 			p.floydWarshall(matriz, Integer.parseInt(args[2]), Integer.parseInt(args[0]));
 		}
 	}
 }
-

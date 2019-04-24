@@ -70,7 +70,6 @@ public class DijkstraAlgorithm {
 		for (int i = 0; i < size; i++) {
 			System.out.println("Destino: nodo " + i + " -> Peso mínimo: " + distancia[i]);
 		}
-		;
 		System.out.println("\nTiempo de ejecución: " + time + " ms");
 	}
 }
