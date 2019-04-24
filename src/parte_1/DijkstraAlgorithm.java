@@ -5,10 +5,13 @@ public class DijkstraAlgorithm {
 	/**
 	 * Determina si la distancia del nodo fuente al nodo destino es la mínima.
 	 * 
-	 * @param distancia Distancia acumulada desde el nodo fuente al nodo destino.
-	 * @param booleanAr Arreglo de booleanos donde es verdadero si el nodo hace
-	 *                  parte del camino de menor peso.
-	 * @param size      Tamaño de la matriz.
+	 * @param distancia
+	 *            Distancia acumulada desde el nodo fuente al nodo destino.
+	 * @param booleanAr
+	 *            Arreglo de booleanos donde es verdadero si el nodo hace parte
+	 *            del camino de menor peso.
+	 * @param size
+	 *            Tamaño de la matriz.
 	 * @return Índice perteneciente al camino de menor peso.
 	 */
 	public int pesoMinimo(int distancia[], Boolean booleanAr[], int size) {
@@ -24,11 +27,14 @@ public class DijkstraAlgorithm {
 	}
 
 	/**
-	 * Realiza el algoritmo de Dijkstra
+	 * Ejecuta el algoritmo de Dijkstra
 	 * 
-	 * @param matriz Matriz cargada en el Main
-	 * @param fuente Nodo fuente
-	 * @param size   Tamaño de la matriz cuadrada
+	 * @param matriz
+	 *            Matriz cargada en el Main
+	 * @param fuente
+	 *            Nodo fuente
+	 * @param size
+	 *            Tamaño de la matriz cuadrada
 	 */
 	public void dijkstra(int matriz[][], int fuente, int size) {
 		int distancia[] = new int[size];
@@ -58,12 +64,17 @@ public class DijkstraAlgorithm {
 	}
 
 	/**
-	 * Imprime los resultados de los caminos de costos mínimos para el nodo fuente.
+	 * Imprime los resultados de los caminos de costos mínimos para el nodo
+	 * fuente.
 	 * 
-	 * @param distancia Distancia acumulada desde el nodo fuente al nodo destino.
-	 * @param size      Tamaño de la matriz cuadrada
-	 * @param fuente    Nodo fuente
-	 * @param time      Tiempo de ejecución del algoritmo
+	 * @param distancia
+	 *            Distancia acumulada desde el nodo fuente al nodo destino.
+	 * @param size
+	 *            Tamaño de la matriz cuadrada
+	 * @param fuente
+	 *            Nodo fuente
+	 * @param time
+	 *            Tiempo de ejecución del algoritmo
 	 */
 	public void printGraph(int distancia[], int size, int fuente, long time) {
 		System.out.println("El costo mínimo del nodo fuente número " + fuente + " a cada nodo destino es: ");

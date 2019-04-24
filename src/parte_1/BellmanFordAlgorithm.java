@@ -1,9 +1,11 @@
 package parte_1;
 
-import parte_1.BellmanFordAlgorithm.ClaseArista;
-
 public class BellmanFordAlgorithm {
-	// A class to represent a weighted edge in graph
+
+	/**
+	 * Clase que crea cada arista con su fuente, destino y peso.
+	 *
+	 */
 	public class ClaseArista {
 		int fuente, destino, peso;
 
@@ -15,7 +17,14 @@ public class BellmanFordAlgorithm {
 	private int nodo, arista;
 	private ClaseArista arrAristas[];
 
-	// Creates a graph with V vertices and E edges
+	/**
+	 * Crea el grafo con el numero de nodos y aristas que le llega por parámetro
+	 * 
+	 * @param pNodo
+	 *            Número de nodos en el grafo
+	 * @param pArista
+	 *            Número de aristas en el grafo
+	 */
 	public BellmanFordAlgorithm(int pNodo, int pArista) {
 		nodo = pNodo;
 		arista = pArista;
@@ -24,41 +33,35 @@ public class BellmanFordAlgorithm {
 			arrAristas[i] = new ClaseArista();
 	}
 
-	// The main function that finds shortest distances from src
-	// to all other vertices using Bellman-Ford algorithm. The
-	// function also detects negative weight cycle
-	public void BellmanFord(BellmanFordAlgorithm graph, int fuente) {
+	/**
+	 * Im
+	 * 
+	 * @param grafo
+	 * @param fuente
+	 */
+	public void BellmanFord(BellmanFordAlgorithm grafo, int fuente) {
 		long startTime = System.currentTimeMillis();
-		int nodo = graph.nodo, E = graph.arista;
+		int nodo = grafo.nodo, E = grafo.arista;
 		int dist[] = new int[nodo];
 
-		// Step 1: Initialize distances from src to all other
-		// vertices as INFINITE
 		for (int i = 0; i < nodo; ++i)
 			dist[i] = Integer.MAX_VALUE;
 		dist[fuente] = 0;
 
-		// Step 2: Relax all edges |V| - 1 times. A simple
-		// shortest path from src to any other vertex can
-		// have at-most |V| - 1 edges
 		for (int i = 1; i < nodo; ++i) {
 			for (int j = 0; j < E; ++j) {
-				int u = graph.arrAristas[j].fuente;
-				int v = graph.arrAristas[j].destino;
-				int weight = graph.arrAristas[j].peso;
+				int u = grafo.arrAristas[j].fuente;
+				int v = grafo.arrAristas[j].destino;
+				int weight = grafo.arrAristas[j].peso;
 				if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v])
 					dist[v] = dist[u] + weight;
 			}
 		}
 
-		// Step 3: check for negative-weight cycles. The above
-		// step guarantees shortest distances if graph doesn't
-		// contain negative weight cycle. If we get a shorter
-		// path, then there is a cycle.
 		for (int j = 0; j < E; ++j) {
-			int u = graph.arrAristas[j].fuente;
-			int v = graph.arrAristas[j].destino;
-			int weight = graph.arrAristas[j].peso;
+			int u = grafo.arrAristas[j].fuente;
+			int v = grafo.arrAristas[j].destino;
+			int weight = grafo.arrAristas[j].peso;
 			if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v])
 				System.out.println("BellmanFordAlgorithm contains negative weight cycle");
 		}
@@ -66,11 +69,23 @@ public class BellmanFordAlgorithm {
 		printBellmanFordAlgorithm(dist, nodo, fuente, endTime);
 	}
 
-	public void crearGrafoBF(int[][] matriz,int nodos, int aristas, int fuente) {
-		int c=0;
-		
+	/**
+	 * Ejecuta el algorítmo Bellman Ford
+	 * 
+	 * @param matriz
+	 *            Matriz representativa del grafo, cargada en el main
+	 * @param nodos
+	 *            Número de nodos en el grafo
+	 * @param aristas
+	 *            Número de aristas en el grafo
+	 * @param fuente
+	 *            Nodo fuente
+	 */
+	public void crearGrafoBF(int[][] matriz, int nodos, int aristas, int fuente) {
+		int c = 0;
+
 		BellmanFordAlgorithm grafo = new BellmanFordAlgorithm(nodos, aristas);
-		
+
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz.length; j++) {
 				if (matriz[i][j] > 0) {
@@ -82,15 +97,20 @@ public class BellmanFordAlgorithm {
 			}
 		}
 		BellmanFord(grafo, fuente);
-	}	
-	
+	}
+
 	/**
-	 * Imprime los resultados de los caminos de costos mínimos para el nodo fuente.
+	 * Imprime los resultados de los caminos de costos mínimos para el nodo
+	 * fuente.
 	 * 
-	 * @param distancia Distancia acumulada desde el nodo fuente al nodo destino.
-	 * @param size      Tamaño de la matriz cuadrada
-	 * @param fuente    Nodo fuente
-	 * @param time      Tiempo de ejecución del algoritmo
+	 * @param distancia
+	 *            Distancia acumulada desde el nodo fuente al nodo destino.
+	 * @param size
+	 *            Tamaño de la matriz cuadrada
+	 * @param fuente
+	 *            Nodo fuente
+	 * @param time
+	 *            Tiempo de ejecución del algoritmo
 	 */
 	public void printBellmanFordAlgorithm(int distancia[], int size, int fuente, long time) {
 		System.out.println("El costo mínimo del nodo fuente número " + fuente + " a cada nodo destino es: ");
@@ -99,5 +119,5 @@ public class BellmanFordAlgorithm {
 		}
 		System.out.println("\nTiempo de ejecución: " + time + " ms");
 	}
-	
+
 }
