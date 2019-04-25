@@ -55,8 +55,7 @@ public class Graph {
 		nodoAdya.get(source).add(dest);
 	}
 
-	// Returns true if the graph contains a
-	// cycle, else false.
+	// Returns true if the graph contains a cycle, else false.
 	// This function is a variation of DFS() in
 	// https://www.geeksforgeeks.org/archives/18212
 	private boolean esCiclico(int size) {
