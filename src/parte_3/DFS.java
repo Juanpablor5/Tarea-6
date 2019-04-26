@@ -50,9 +50,6 @@ public class DFS {
 	}
 
 	private boolean esCiclico(int size) {
-
-		// Mark all the vertices as not visited and
-		// not part of recursion stack
 		boolean[] visited = new boolean[vertice];
 		boolean[] pila = new boolean[vertice];
 		for (int i = 0; i < vertice; i++) {
@@ -64,7 +61,7 @@ public class DFS {
 
 	public static void main(String args[]) {
 		DFS graph = new DFS(Integer.parseInt(args[0]));
-		// Crea la matriz del tamaño escogido por el usuario en los parámetros.
+		// Crea la matriz del tamaï¿½o escogido por el usuario en los parï¿½metros.
 		int[][] matriz = new int[Integer.parseInt(args[0])][Integer.parseInt(args[0])];
 		String ruta = "./data/distances" + args[0] + ".txt";
 		try {
